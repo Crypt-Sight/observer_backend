@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "observer-backend"
+version = "0.1.0"
+description = ""
+authors = ["CryptSight"]
+license = "Apache-2.0 license"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+uvicorn = "^0.29.0"
+fastapi = "^0.111.0"
+pydantic = "^2.7.1"
+pydantic-settings = "^2.2.1"
+alembic = "^1.13.1"
+greenlet = "^3.0.3"
+sqlalchemy = "^2.0.30"
+asyncpg = "^0.29.0"
+celery = {extras = ["amqp"], version = "^5.4.0"}
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.1"
+pytest-asyncio = "^0.23.7"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
