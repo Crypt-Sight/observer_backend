@@ -3,7 +3,7 @@ import json
 import pytest
 import sqlalchemy as sa
 
-from app.config import config
+# from app.config import config
 
 # @pytest.fixture(scope="session", autouse=True)
 # async def prepare_database():
