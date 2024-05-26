@@ -1,0 +1,38 @@
+name: integration test
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ vars.DB_PASS }}
+          MYSQL_DATABASE: godzilla_test
+        ports:
+          - 3306:3306
+    env:
+      MODE: ${{ vars.MODE }}
+      API_TOKEN: ${{vars.API_TOKEN}}
+      DB_USER: ${{ vars.DB_USER }}
+      DB_PASS: ${{ vars.DB_PASS }}
+      DB_HOST: ${{ vars.DB_HOST }}
+      DB_NAME: ${{ vars.DB_NAME }}
+      AMQP_DSN: ${{ vars.AMQP_DSN }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+    - name: Install dependencies
+      run: |
+        pip install poetry
+        poetry config virtualenvs.create false
+        poetry install
+    - name: Run Integration tests
+      run: |
+        pytest

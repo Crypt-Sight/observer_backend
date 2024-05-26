@@ -35,7 +35,7 @@ class Config(BaseSettings):
             host=self.DB_HOST,
             port=self.DB_PORT,
             username=self.DB_USER,
-            password=self.DB_PASS
+            password=self.DB_PASS,
         )
 
     @property
