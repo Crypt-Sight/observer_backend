@@ -20,7 +20,7 @@ jobs:
       DB_PASS: ${{ vars.DB_PASS }}
       DB_HOST: ${{ vars.DB_HOST }}
       DB_NAME: ${{ vars.DB_NAME }}
-      AMQP_DSN: ${{ vars.AMQP_DSN }}
+      AMQP_DSN: ${{ secrets.AMQP_DSN }}
 
     steps:
     - uses: actions/checkout@v2
