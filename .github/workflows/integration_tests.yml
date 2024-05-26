@@ -7,12 +7,13 @@ jobs:
 
     services:
       mysql:
-        image: mysql:latest
+        image: postgres:16
         env:
-          MYSQL_ROOT_PASSWORD: ${{ vars.DB_PASS }}
-          MYSQL_DATABASE: godzilla_test
+          POSTGRES_USER: ${{ vars.DB_USER }}
+          POSTGRES_PASSWORD: ${{ vars.DB_PASS }}
+          POSTGRES_DB: ${{vars.DB_NAME}}
         ports:
-          - 3306:3306
+          - 5432:5432
     env:
       MODE: ${{ vars.MODE }}
       API_TOKEN: ${{vars.API_TOKEN}}
