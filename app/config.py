@@ -1,7 +1,7 @@
 import os
 from typing import Literal
 
-from pydantic import AmqpDsn, Field, PostgresDsn
+from pydantic import AmqpDsn, Field, PostgresDsn, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -14,7 +14,7 @@ class Config(BaseSettings):
 
     MODE: Literal["DEV", "PROD", "TEST"]
 
-    API_TOKEN: str
+    API_TOKEN: SecretStr
 
     DB_HOST: str
     DB_PORT: int = Field(default=5432)
@@ -32,10 +32,11 @@ class Config(BaseSettings):
     def database_dsn(self) -> PostgresDsn:
         return PostgresDsn.build(
             scheme="postgresql+asyncpg",
-            host=self.DB_HOST,
-            port=self.DB_PORT,
             username=self.DB_USER,
             password=self.DB_PASS,
+            host=self.DB_HOST,
+            port=self.DB_PORT,
+            path=self.DB_NAME,
         )
 
     @property

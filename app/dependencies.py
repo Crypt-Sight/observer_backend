@@ -11,5 +11,5 @@ def bearer_auth(token: Annotated[HTTPAuthorizationCredentials, Depends(HTTPBeare
     scheme = token.scheme
     if scheme != "Bearer":
         raise Auth.scheme_error(scheme)
-    if token.credentials != config.API_TOKEN:
+    if token.credentials != config.API_TOKEN.get_secret_value():
         raise Auth.Unauthorized
