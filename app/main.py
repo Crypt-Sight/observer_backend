@@ -16,4 +16,4 @@ async def healthcheck():
 
 @app.get("/debug/auth", dependencies=[Depends(bearer_auth)], tags=["Auth"], status_code=status.HTTP_200_OK)
 async def auth():
-    return
+    return {"status": "OK"}

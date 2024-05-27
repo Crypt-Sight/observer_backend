@@ -23,6 +23,7 @@ greenlet = "^3.0.3"
 sqlalchemy = "^2.0.30"
 asyncpg = "^0.29.0"
 celery = {extras = ["amqp"], version = "^5.4.0"}
+loguru = "^0.7.2"
 
 
 [tool.poetry.group.dev.dependencies]
